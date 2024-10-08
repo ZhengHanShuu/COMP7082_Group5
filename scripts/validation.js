@@ -84,7 +84,7 @@ function auth() {
     var email_input = document.getElementById('email-input').value;
     var password_input = document.getElementById('password-input').value;
     if (email_input == '123@gmail.com' && password_input == 12345678){
-        window.location.assign('./home.html');
+        window.location.assign('./profile.html');
         alert("login successfully")
     } else {
         alert("invalid information")
