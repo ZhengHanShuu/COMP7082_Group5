@@ -1,4 +1,5 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter
+
 from api.http_response import HTTPResponse
 from infra.repositories import RoutineRepository
 from infra.models import Routine
@@ -12,7 +13,7 @@ class RoutineController:
     workout routines, as well as listing all routines.
     """
 
-    def __init__(self, repository: RoutineRepository, router: APIRouter = Depends(APIRouter)):
+    def __init__(self, repository: RoutineRepository, router: APIRouter = APIRouter()):
         """
         Initialize the RoutineController.
 

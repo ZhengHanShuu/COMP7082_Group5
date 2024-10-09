@@ -1,5 +1,7 @@
-from pydantic import BaseModel, Field
 from typing import List, Optional
+
+from pydantic import BaseModel, Field
+from pydantic.json_schema import SkipJsonSchema
 
 
 class Exercise(BaseModel):
@@ -31,7 +33,7 @@ class Routine(BaseModel):
         difficulty (Optional[str]): The difficulty level of the workout, defaults to "Intermediate".
         total_duration (Optional[int]): The total duration of the workout in minutes.
     """
-    id: Optional[str] = None
+    id: SkipJsonSchema[str] = ""
     name: str
     exercises: List[Exercise]
     difficulty: Optional[str] = Field(
