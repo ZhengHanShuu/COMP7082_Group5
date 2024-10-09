@@ -42,7 +42,7 @@ class RoutineController:
         Returns:
             HTTPResponse
         """
-        routine_id = self.repository.add(routine)
+        routine_id = await self.repository.add(routine)
         return HTTPResponse(201, "Routine is successfully created", {
             "id": routine_id
         })
@@ -57,7 +57,7 @@ class RoutineController:
         Returns:
             HTTPResponse
         """
-        routine = self.repository.get(routine_id)
+        routine = await self.repository.get(routine_id)
         if not routine:
             return HTTPResponse(404, "Routine with this ID is not found")
         return HTTPResponse(200, "Routine is successfully retrieved", routine.model_dump())
@@ -69,7 +69,7 @@ class RoutineController:
         Returns:
             HTTPResponse
         """
-        routines = self.repository.list()
+        routines = await self.repository.list()
         return HTTPResponse(200, "Successfully list all routines", [routine.model_dump() for routine in routines])
 
     async def update_routine(self, routine_id: str, routine: Routine):
@@ -83,7 +83,7 @@ class RoutineController:
         Returns:
             HTTPResponse
         """
-        updated = self.repository.update(routine_id, routine)
+        updated = await self.repository.update(routine_id, routine)
         if not updated:
             return HTTPResponse(404, "Routine with this id is not found for update")
         return HTTPResponse(200, "Routine is successfully updated")
@@ -98,7 +98,7 @@ class RoutineController:
         Returns:
             HTTPResponse
         """
-        removed = self.repository.remove(routine_id)
+        removed = await self.repository.remove(routine_id)
         if not removed:
             return HTTPResponse(404, "Routine with this ID is not found for removal")
         return HTTPResponse(204, "Routine is successfully removed")
